@@ -1,7 +1,9 @@
 /* 首页导航 */
-.nav_warp{
+page{
   color:#666;
+  padding: 10rpx;
 }
+.nav_warp{}
 .nav{
   white-space: nowrap;
   padding: 5rpx;
@@ -13,4 +15,18 @@
 }
 .nav_item.active{
   border-bottom: 5rpx solid #de688b;
+}
+
+/* 轮播图组件 */
+.slides{}
+.slides swiper{
+  height: 220rpx;
+}
+.slides navigator{
+  width: 100%;
+  height: 100%;
+}
+.slides image{
+  width: 100%;
+  height: 100%;
 }

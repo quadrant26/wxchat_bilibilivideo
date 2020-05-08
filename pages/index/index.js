@@ -6,7 +6,9 @@ Page({
   data: {
     currentIndexNav: 0,
     // 首页导航数据
-    navList: []
+    navList: [],
+    // 轮播图数据
+    swiperList: []
   },
 
   // 点击首页导航按钮
@@ -34,11 +36,31 @@ Page({
     })
   },
   /**
+   * 获取轮播图数据
+   */
+  getSwiperList (){
+    let that = this;
+    // 通过接口进行获取
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/swiperList',
+      success (res){
+        // console.log(res)
+        if ( res.data.code == 0){
+          that.setData({
+            swiperList: res.data.data.swiperList
+          })
+        }
+      }
+    })
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // 1. 获取首页导航栏数据
     this.getNavList();
+    // 2. 获取轮播图数据
+    this.getSwiperList();
   },
 
   /**
