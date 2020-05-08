@@ -4,14 +4,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    currentIndexNav: 0,
+    // 首页导航数据
+    navList: []
   },
 
+  // 点击首页导航按钮
+  activeNav (e){
+    this.setData({
+      currentIndexNav: e.target.dataset.index
+    })
+  },
+  /**
+   * 获取首页的导航数据
+   */
+  getNavList (){
+    let that = this;
+    // 利用小程序的内置发送请求的方法
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/navList',
+      success(res){
+        // console.log(res);
+        if( res.data.code == 0){
+          that.setData({
+            navList: res.data.data.navList
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    // 1. 获取首页导航栏数据
+    this.getNavList();
   },
 
   /**

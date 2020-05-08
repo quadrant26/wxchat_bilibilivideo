@@ -1,0 +1,13 @@
+<view class="main">
+  <!-- 公共同步 -->
+  <MyTitle></MyTitle>
+  <!-- 首页导航 -->
+  <view class="nav_warp">
+    <!-- 自己滚动的组件 -->
+    <scroll-view class="nav" scroll-x>
+      <view class="nav_item {{currentIndexNav ===index ? 'active' : ''}}" bindtap="activeNav" data-index="{{index}}" wx:for="{{navList}}" wx:key="{{index}}">
+        {{item.text}}
+      </view>
+    </scroll-view>
+  </view>
+</view>
