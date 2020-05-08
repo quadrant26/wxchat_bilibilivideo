@@ -8,7 +8,8 @@ Page({
     // 首页导航数据
     navList: [],
     // 轮播图数据
-    swiperList: []
+    swiperList: [],
+    videosList: [],
   },
 
   // 点击首页导航按钮
@@ -54,6 +55,23 @@ Page({
     })
   },
   /**
+   * 获取 videos
+   */
+  getVideosList (){
+    let that = this;
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/videoList',
+      success(res){
+        // console.log(res);
+        if( res.data.code == 0){
+          that.setData({
+            videosList: res.data.data.videoList
+          })
+        }
+      }
+    })
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -61,6 +79,8 @@ Page({
     this.getNavList();
     // 2. 获取轮播图数据
     this.getSwiperList();
+    // 3. 获取视频列表
+    this.getVideosList();
   },
 
   /**
