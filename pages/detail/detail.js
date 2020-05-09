@@ -5,6 +5,7 @@ Page({
    */
   data: {
     videoInfo: null,
+    otherList: []
   },
 
   /**
@@ -15,6 +16,8 @@ Page({
     let videoId = options.id;
     // 获取视频详情
     this.getCurrentVideo(videoId);
+    // 获取推荐视频
+    this.getOtherList(videoId);
 
   },
   /** 根据视频的id获取视频详情 */
@@ -26,6 +29,20 @@ Page({
         if( res.data.code == 0){
           that.setData({
             videoInfo: res.data.data.videoInfo
+          })
+        }
+      }
+    })
+  },
+  /** 获取推荐视频 */
+  getOtherList(videoId){
+    let that = this;
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/otherList?id=' + videoId,
+      success (res){
+        if( res.data.code == 0){
+          that.setData({
+            otherList: res.data.data.otherList
           })
         }
       }
