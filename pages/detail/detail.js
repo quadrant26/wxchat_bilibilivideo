@@ -5,7 +5,8 @@ Page({
    */
   data: {
     videoInfo: null,
-    otherList: []
+    otherList: [],
+    commentList: []
   },
 
   /**
@@ -18,6 +19,8 @@ Page({
     this.getCurrentVideo(videoId);
     // 获取推荐视频
     this.getOtherList(videoId);
+    // 获取评论诗句
+    this.getCommentList(videoId);
 
   },
   /** 根据视频的id获取视频详情 */
@@ -43,6 +46,20 @@ Page({
         if( res.data.code == 0){
           that.setData({
             otherList: res.data.data.otherList
+          })
+        }
+      }
+    })
+  },
+  /** 获取评论数据 */
+  getCommentList (videoId){
+    let that = this;
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/commentList?id=' + videoId,
+      success (res){
+        if( res.data.code == 0){
+          that.setData({
+            commentList: res.data.data.commentData
           })
         }
       }
